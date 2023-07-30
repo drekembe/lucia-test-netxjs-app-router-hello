@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Migrate executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "whammy": {
+      "type": "string",
+      "description": "Whammyy"
+    }
+  },
+  "required": []
+}

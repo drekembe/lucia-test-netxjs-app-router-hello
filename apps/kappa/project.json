@@ -62,6 +62,12 @@
       "options": {
         "lintFilePatterns": ["apps/kappa/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "migrate": {
+      "executor": "@qapp/drizzle-migrate:migrate",
+      "options": {
+        "whammy": "{projectRoot}"
+      }
     }
   },
   "tags": []

@@ -1,0 +1,66 @@
+{
+  "name": "drizzle-migrate",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/drizzle-migrate/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/drizzle-migrate",
+        "main": "libs/drizzle-migrate/src/index.ts",
+        "tsConfig": "libs/drizzle-migrate/tsconfig.lib.json",
+        "assets": [
+          "libs/drizzle-migrate/*.md",
+          {
+            "input": "./libs/drizzle-migrate/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/drizzle-migrate/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/drizzle-migrate",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/drizzle-migrate",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/drizzle-migrate/**/*.ts",
+          "libs/drizzle-migrate/package.json",
+          "libs/drizzle-migrate/executors.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/drizzle-migrate/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

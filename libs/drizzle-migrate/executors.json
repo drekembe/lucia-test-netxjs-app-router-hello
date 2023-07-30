@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "migrate": {
+      "implementation": "./src/executors/migrate/executor",
+      "schema": "./src/executors/migrate/schema.json",
+      "description": "migrate executor"
+    }
+  }
+}

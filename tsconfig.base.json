@@ -15,7 +15,9 @@
     "strict": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@qapp/drizzle-migrate": ["libs/drizzle-migrate/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
