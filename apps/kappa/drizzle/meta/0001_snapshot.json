@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "id": "438845e5-4a65-4353-b485-d796ae2e91e5",
+  "prevId": "1b57f04a-c60b-4ccc-b261-4b03c1ce1b26",
+  "tables": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

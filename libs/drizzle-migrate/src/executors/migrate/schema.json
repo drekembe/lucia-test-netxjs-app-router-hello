@@ -8,7 +8,13 @@
     "whammy": {
       "type": "string",
       "description": "Whammyy"
+    },
+    "migrations": {
+      "type": "string"
+    },
+    "db": {
+      "type": "string"
     }
   },
-  "required": []
+  "required": ["migrations", "db"]
 }

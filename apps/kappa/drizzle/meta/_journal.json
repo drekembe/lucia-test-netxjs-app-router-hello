@@ -8,6 +8,20 @@
       "when": 1688833568772,
       "tag": "0000_known_starjammers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1691175230696,
+      "tag": "0001_green_roughhouse",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1691175295687,
+      "tag": "0002_chunky_whirlwind",
+      "breakpoints": true
     }
   ]
 }
