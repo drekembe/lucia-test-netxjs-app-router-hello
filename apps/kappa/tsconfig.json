@@ -11,6 +11,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+    ],
     "plugins": [
       {
         "name": "next"
@@ -29,6 +33,7 @@
     "../../packages/my-new-app/.next/types/**/*.ts",
     "../../dist/packages/my-new-app/.next/types/**/*.ts",
     "next-env.d.ts",
+    "app.d.ts",
     "../../apps/kappa/.next/types/**/*.ts"
   ],
   "exclude": [

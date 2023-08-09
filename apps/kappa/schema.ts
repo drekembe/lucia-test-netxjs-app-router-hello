@@ -26,6 +26,8 @@ export const cities = sqliteTable('cities', {
 export const people = sqliteTable('people', {
   id: integer('id').primaryKey(),
   name: text('name'),
+  age: integer('age'),
+  isCool: integer('is_cool'),
   cityId: integer('city_id').references(() => cities.id),
 });
 
