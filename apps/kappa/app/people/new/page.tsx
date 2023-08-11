@@ -1,7 +1,8 @@
-import { db } from '../../db';
+import { db } from '../../../db';
 import { cities, people } from '../../../schema';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
+import { requireUser } from '../../../util';
 
 const schema = z.object({
   name: z.string().nonempty(),
@@ -10,6 +11,7 @@ const schema = z.object({
 });
 
 export default async function Page() {
+  await requireUser();
   const result = db.select().from(cities).all();
   async function addPerson(data: FormData) {
     'use server';

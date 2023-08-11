@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 
 export const Form = ({
   children,
@@ -24,7 +26,7 @@ export const Form = ({
         if (response.status === 0) {
           // redirected
           // when using `redirect: "manual"`, response status 0 is returned
-          return router.reload();
+          return router.refresh();
         }
       }}
     >

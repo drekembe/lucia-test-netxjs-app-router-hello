@@ -1,8 +1,8 @@
-'use server';
-
+// app/api/login/route.ts
 import { auth } from '../../../lucia';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { LuciaError } from 'lucia';
 
 import type { NextRequest } from 'next/server';
 
@@ -13,7 +13,7 @@ export const POST = async (request: NextRequest) => {
   // basic check
   if (
     typeof username !== 'string' ||
-    username.length < 4 ||
+    username.length < 1 ||
     username.length > 31
   ) {
     return NextResponse.json(
@@ -27,7 +27,7 @@ export const POST = async (request: NextRequest) => {
   }
   if (
     typeof password !== 'string' ||
-    password.length < 6 ||
+    password.length < 1 ||
     password.length > 255
   ) {
     return NextResponse.json(
@@ -40,16 +40,13 @@ export const POST = async (request: NextRequest) => {
     );
   }
   try {
-    const user = await auth.createUser({
-      key: {
-        providerId: 'username', // auth method
-        providerUserId: username.toLowerCase(), // unique id when using "username" auth method
-        password, // hashed by Lucia
-      },
-      attributes: {
-        username,
-      },
-    });
+    // find user by key
+    // and validate password
+    const user = await auth.useKey(
+      'username',
+      username.toLowerCase(),
+      password
+    );
     const session = await auth.createSession({
       userId: user.userId,
       attributes: {},
@@ -66,11 +63,28 @@ export const POST = async (request: NextRequest) => {
       },
     });
   } catch (e) {
-    // this part depends on the database you're using
-    // check for unique constraint error in user table
-    console.error(`ERROR`);
-    return NextResponse.json({
-      ok: 'this bad',
-    });
+    if (
+      e instanceof LuciaError &&
+      (e.message === 'AUTH_INVALID_KEY_ID' ||
+        e.message === 'AUTH_INVALID_PASSWORD')
+    ) {
+      // user does not exist or invalid password
+      return NextResponse.json(
+        {
+          error: 'Incorrect username or password',
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+    return NextResponse.json(
+      {
+        error: 'An unknown error occurred',
+      },
+      {
+        status: 500,
+      }
+    );
   }
 };

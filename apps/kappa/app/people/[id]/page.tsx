@@ -1,4 +1,4 @@
-import { db } from '../../db';
+import { db } from '../../../db';
 import { people, cities, countries } from '../../../schema';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';

@@ -1,11 +1,11 @@
-import { Form } from '../../components/form';
-import Link from 'next/link';
-
+// app/login/page.tsx
 import { auth } from '../../lucia';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
+import { login } from '../actions/login';
 
-export default async function Page() {
+const Page = async () => {
   const authRequest = auth.handleRequest({
     request: null,
     cookies,
@@ -14,8 +14,8 @@ export default async function Page() {
   if (session) redirect('/');
   return (
     <>
-      <h1>Sign up</h1>
-      <Form action="/api/signup">
+      <h1>Sign in</h1>
+      <form action={login}>
         <label htmlFor="username">Username</label>
         <input name="username" id="username" />
         <br />
@@ -23,8 +23,10 @@ export default async function Page() {
         <input type="password" name="password" id="password" />
         <br />
         <input type="submit" />
-      </Form>
-      <Link href="/login">Sign in</Link>
+      </form>
+      <Link href="/signup">Create an account</Link>
     </>
   );
-}
+};
+
+export default Page;

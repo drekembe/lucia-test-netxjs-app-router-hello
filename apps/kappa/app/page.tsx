@@ -1,11 +1,20 @@
 import Link from 'next/link';
 import { countries, people, cities } from '../schema';
-import { db } from './db';
+import { db } from '../db';
 import { eq } from 'drizzle-orm';
 import { DeleteButton } from '../components/delete-btn';
+import { Logout } from '../components/logout';
 import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
+import { auth } from '../lucia';
 
 export default async function Index() {
+  const authRequest = auth.handleRequest({
+    request: null,
+    cookies,
+  });
+  const session = await authRequest.validate();
+  const user = session?.user;
   const result = db
     .select({
       id: people.id,
@@ -30,10 +39,15 @@ export default async function Index() {
     revalidatePath('/');
   }
   return (
-    <div className="flex flex-col gap-8 p-8 container mx-auto">
-      <div className="bg-blue-500 text-white p-4 rounded-xl">
-        <Link href="/sub">HELO</Link>
-      </div>
+    <main className="flex flex-col gap-8 p-8 container mx-auto">
+      <nav className="bg-blue-500 text-white p-4 rounded-xl">
+        {!user && <Link href="/login">Sign in</Link>}
+        {user && (
+          <span>
+            logged in as {user.username} <Logout />
+          </span>
+        )}
+      </nav>
       <div className="divide-y divide-gray-300 border border-gray-300 rounded-xl shadow-md overflow-clip">
         {result.map((entry) => (
           <div
@@ -54,12 +68,14 @@ export default async function Index() {
           </div>
         ))}
       </div>
-      <Link
-        href="/people/new"
-        className="text-center p-4 border-blue-500 border rounded-xl text-blue-500 text-xl hover:bg-blue-300 transition-colors shadow-md shadow-blue-200 inline-block hover:text-white"
-      >
-        Add new
-      </Link>
-    </div>
+      {user && (
+        <Link
+          href="/people/new"
+          className="text-center p-4 border-blue-500 border rounded-xl text-blue-500 text-xl hover:bg-blue-300 transition-colors shadow-md shadow-blue-200 inline-block hover:text-white"
+        >
+          Add new
+        </Link>
+      )}
+    </main>
   );
 }
