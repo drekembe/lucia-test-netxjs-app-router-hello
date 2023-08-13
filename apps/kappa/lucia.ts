@@ -1,14 +1,13 @@
-// lucia.ts
 import { lucia } from 'lucia';
 import { betterSqlite3 } from '@lucia-auth/adapter-sqlite';
 import { env } from './env';
 import { nextjs } from 'lucia/middleware';
 import { cache } from 'react';
 import { cookies } from 'next/headers';
+import { github } from '@lucia-auth/oauth/providers';
 import Database from 'better-sqlite3';
 import 'lucia/polyfill/node';
 
-// expect error
 export const auth = lucia({
   env: process.env.NODE_ENV === 'development' ? 'DEV' : 'PROD',
   middleware: nextjs(),
@@ -25,11 +24,15 @@ export const auth = lucia({
   },
 });
 
+export const githubAuth = github(auth, {
+  clientId: env.GITHUB_CLIENT_ID,
+  clientSecret: env.GITHUB_CLIENT_SECRET,
+});
+
 export const getPageSession = cache(() => {
   const authRequest = auth.handleRequest({
     request: null,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cookies: cookies as any,
+    cookies: cookies,
   });
   return authRequest.validate();
 });

@@ -51,6 +51,7 @@ const Page = async () => {
             Submit
           </button>
           <Link href="/signup">Create an account</Link>
+          <a href="/login/github">Login with github</a>
         </div>
       </Form>
     </div>
