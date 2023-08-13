@@ -4,9 +4,11 @@ import { db } from '../db';
 import { eq } from 'drizzle-orm';
 import { DeleteButton } from '../components/delete-btn';
 import { Logout } from '../components/logout';
+import { Comments } from '../components/comments';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { auth } from '../lucia';
+import { Suspense } from 'react';
 
 export default async function Index() {
   const authRequest = auth.handleRequest({

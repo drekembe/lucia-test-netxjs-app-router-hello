@@ -37,6 +37,7 @@ export type NewCountry = InferModel<typeof countries, 'insert'>;
 export const user = sqliteTable('user', {
   id: text('id').primaryKey().notNull(),
   username: text('username').notNull(),
+  githubUsername: text('github_username'),
 });
 
 export const userKey = sqliteTable('user_key', {
