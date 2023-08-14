@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { id: number } }) {
     .at(0);
   if (!peep) notFound();
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4">
       <div className="text-xl">{peep.name}</div>
       <div className="bg-gray-300 rounded p-4">
         {peep.age}, {peep.city.name}, {peep.country.name}

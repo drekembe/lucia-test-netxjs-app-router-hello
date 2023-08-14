@@ -1,8 +1,9 @@
 import { auth } from '../lucia';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { PropsWithChildren } from 'react';
 
-export function Logout() {
+export function Logout({ children }: PropsWithChildren) {
   async function logout() {
     'use server';
     const authRequest = auth.handleRequest({ request: null, cookies });
@@ -20,8 +21,8 @@ export function Logout() {
     redirect('/');
   }
   return (
-    <form action={logout}>
-      <button type="submit">Logout</button>
+    <form action={logout} className="inline-block">
+      <button type="submit">{children}</button>
     </form>
   );
 }

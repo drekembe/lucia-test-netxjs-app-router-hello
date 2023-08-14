@@ -3,12 +3,9 @@ import { countries, people, cities } from '../schema';
 import { db } from '../db';
 import { eq } from 'drizzle-orm';
 import { DeleteButton } from '../components/delete-btn';
-import { Logout } from '../components/logout';
-import { Comments } from '../components/comments';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { auth } from '../lucia';
-import { Suspense } from 'react';
 
 export default async function Index() {
   const authRequest = auth.handleRequest({
@@ -41,15 +38,7 @@ export default async function Index() {
     revalidatePath('/');
   }
   return (
-    <main className="flex flex-col gap-8 p-8 container mx-auto">
-      <nav className="bg-blue-500 text-white p-4 rounded-xl">
-        {!user && <Link href="/login">Sign in</Link>}
-        {user && (
-          <span>
-            logged in as {user.username} <Logout />
-          </span>
-        )}
-      </nav>
+    <div className="flex flex-col gap-8">
       <div className="divide-y divide-gray-300 border border-gray-300 rounded-xl shadow-md overflow-clip">
         {result.map((entry) => (
           <div
@@ -73,11 +62,11 @@ export default async function Index() {
       {user && (
         <Link
           href="/people/new"
-          className="text-center p-4 border-blue-500 border rounded-xl text-blue-500 text-xl hover:bg-blue-300 transition-colors shadow-md shadow-blue-200 inline-block hover:text-white"
+          className="text-center p-4 border-pink-500 border rounded-xl text-pink-500 text-xl transition-colorsinline-block hover:text-white hover:bg-pink-500 self-end"
         >
-          Add new
+          🐻 Add new
         </Link>
       )}
-    </main>
+    </div>
   );
 }

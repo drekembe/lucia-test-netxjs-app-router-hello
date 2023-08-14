@@ -1,8 +1,11 @@
 import { auth, githubAuth } from '../../../../lucia';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import { cookies } from 'next/headers';
+import { db } from '../../../../db';
+import { user } from '../../../../schema';
 
 import type { NextRequest } from 'next/server';
+import { eq } from 'drizzle-orm';
 
 export const GET = async (request: NextRequest) => {
   const cookieStore = cookies();
@@ -21,20 +24,26 @@ export const GET = async (request: NextRequest) => {
       await githubAuth.validateCallback(code);
 
     const getUser = async () => {
-      console.log({ existingUser, githubUser });
-      if (existingUser) return existingUser;
-      const user = await createUser({
+      if (existingUser) {
+        db.update(user)
+          .set({ avatarUrl: githubUser.avatar_url })
+          .where(eq(user.id, existingUser.userId))
+          .run();
+        return existingUser;
+      }
+      const u = await createUser({
         attributes: {
           username: githubUser.login,
           github_username: githubUser.login,
+          avatar_url: githubUser.avatar_url,
         },
       });
-      return user;
+      return u;
     };
 
-    const user = await getUser();
+    const u = await getUser();
     const session = await auth.createSession({
-      userId: user.userId,
+      userId: u.userId,
       attributes: {},
     });
     const authRequest = auth.handleRequest({ request, cookies });

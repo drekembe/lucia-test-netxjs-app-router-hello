@@ -5,9 +5,7 @@ import type { NextRequest } from 'next/server';
 
 export const GET = async (request: NextRequest) => {
   const [url, state] = await githubAuth.getAuthorizationUrl();
-  const cookieStore = cookies();
-  // store state
-  cookieStore.set('github_oauth_state', state, {
+  cookies().set('github_oauth_state', state, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     path: '/',

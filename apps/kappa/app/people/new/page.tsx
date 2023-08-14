@@ -29,26 +29,24 @@ export default async function Page() {
     redirect('/');
   }
   return (
-    <div className="p-4">
-      <form action={addPerson} className="flex flex-col gap-4 items-start">
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Enter name ..."
-          autoFocus
-        />
-        <input type="number" name="age" placeholder="Enter age ..." id="age" />
-        <label htmlFor="cities-select">Choose city:</label>
-        <select name="cityId" id="cities-select">
-          {result.map((city) => (
-            <option value={city.id} key={city.id}>
-              {city.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit">ok go</button>
-      </form>
-    </div>
+    <form action={addPerson} className="flex flex-col gap-4 items-start">
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Enter name ..."
+        autoFocus
+      />
+      <input type="number" name="age" placeholder="Enter age ..." id="age" />
+      <label htmlFor="cities-select">Choose city:</label>
+      <select name="cityId" id="cities-select">
+        {result.map((city) => (
+          <option value={city.id} key={city.id}>
+            {city.name}
+          </option>
+        ))}
+      </select>
+      <button type="submit">ok go</button>
+    </form>
   );
 }

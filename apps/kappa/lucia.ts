@@ -20,7 +20,11 @@ export const auth = lucia({
     session: 'user_session',
   }),
   getUserAttributes(data) {
-    return { username: data.username, githubUsername: data.github_username };
+    return {
+      username: data.username,
+      githubUsername: data.github_username,
+      avatarUrl: data.avatar_url,
+    };
   },
 });
 
