@@ -42,13 +42,16 @@ export default async function Index() {
       <div className="divide-y divide-gray-300 border border-gray-300 rounded-xl shadow-md overflow-clip">
         {result.map((entry) => (
           <div
-            className="p-4 text-gray-700 flex justify-between bg-white hover:bg-slate-200 transition-colors items-center"
+            className="text-gray-700 flex justify-between bg-white items-stretch"
             key={entry.id}
           >
-            <Link href={`people/${entry.id}`} className="block">
+            <Link
+              href={`people/${entry.id}`}
+              className="flex items-center w-32 p-4 hover:text-pink-500"
+            >
               {entry.name}
             </Link>
-            <div className="flex flex-row gap-8 items-center">
+            <div className="flex flex-row gap-8 items-center p-4">
               <div>
                 {entry.city.name}, {entry.country.name}
               </div>
@@ -62,7 +65,7 @@ export default async function Index() {
       {user && (
         <Link
           href="/people/new"
-          className="text-center p-4 border-pink-500 border rounded-xl text-pink-500 text-xl transition-colorsinline-block hover:text-white hover:bg-pink-500 self-end"
+          className="text-center p-4 border-pink-500 border rounded-xl text-pink-500 text-xl transition-colorsinline-block hover:text-white hover:bg-pink-500 self-end transition-all outline-offset-4"
         >
           🐻 Add new
         </Link>

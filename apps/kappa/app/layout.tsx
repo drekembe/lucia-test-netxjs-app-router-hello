@@ -44,7 +44,7 @@ export default async function RootLayout({
                   )}
                   <span className="bg-white/50 px-4">{user.username}</span>
                 </div>
-                <Logout>⚙️</Logout>
+                <Logout>🔋</Logout>
               </div>
             )}
           </div>
