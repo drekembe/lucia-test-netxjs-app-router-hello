@@ -1,4 +1,4 @@
-import { auth, githubAuth } from '../../../../lucia';
+import { auth, discordAuth } from '../../../../lucia';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import { cookies } from 'next/headers';
 import { db } from '../../../../db';
@@ -9,39 +9,32 @@ import { eq } from 'drizzle-orm';
 
 export const GET = async (request: NextRequest) => {
   const cookieStore = cookies();
-  const storedState = cookieStore.get('github_oauth_state')?.value;
+  const storedState = cookieStore.get('discord_oauth_state')?.value;
   const url = new URL(request.url);
   const state = url.searchParams.get('state');
   const code = url.searchParams.get('code');
-  // validate state
-  if (!storedState || !state || storedState !== state || !code) {
+  if (!storedState || !state || storedState !== state || !code)
     return new Response(null, {
       status: 400,
     });
-  }
   try {
-    const { existingUser, githubUser, createUser } =
-      await githubAuth.validateCallback(code);
-
+    const { existingUser, discordUser, createUser } =
+      await discordAuth.validateCallback(code);
     const getUser = async () => {
       if (existingUser) {
         return existingUser;
       }
-      const u = await createUser({
+      return await createUser({
         attributes: {
-          username: githubUser.login,
-          github_username: githubUser.login,
-          avatar_url: githubUser.avatar_url,
+          username: discordUser.username,
+          avatar_url: discordUser.avatar,
+          discord_username: discordUser.username,
         },
       });
-      return u;
     };
-
     const u = await getUser();
-    db.update(user)
-      .set({ avatarUrl: githubUser.avatar_url })
-      .where(eq(user.id, u.userId))
-      .run();
+    const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png`;
+    db.update(user).set({ avatarUrl }).where(eq(user.id, u.userId)).run();
     const session = await auth.createSession({
       userId: u.userId,
       attributes: {},
@@ -51,7 +44,7 @@ export const GET = async (request: NextRequest) => {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: '/', // redirect to profile page
+        Location: '/',
       },
     });
   } catch (e) {

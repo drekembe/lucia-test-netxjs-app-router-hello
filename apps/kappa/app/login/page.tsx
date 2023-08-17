@@ -49,6 +49,9 @@ const Page = async () => {
         <a href="/login/github" className="text-pink-600 hover:underline">
           Login with github
         </a>
+        <a href="/login/discord" className="text-pink-600 hover:underline">
+          Login with discord
+        </a>
       </div>
     </Form>
   );

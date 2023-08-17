@@ -13,7 +13,7 @@
     "incremental": true,
     "lib": [
       "dom",
-      "dom.iterable",
+      "dom.iterable"
     ],
     "plugins": [
       {
@@ -34,7 +34,8 @@
     "../../dist/packages/my-new-app/.next/types/**/*.ts",
     "next-env.d.ts",
     "app.d.ts",
-    "../../apps/kappa/.next/types/**/*.ts"
+    "../../apps/kappa/.next/types/**/*.ts",
+    "../../dist/apps/kappa/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

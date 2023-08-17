@@ -12,6 +12,7 @@ export const getPageSession = cache(() => {
 });
 
 export const requireUser = cache(async () => {
+  
   const authRequest = auth.handleRequest({
     request: null,
     cookies,

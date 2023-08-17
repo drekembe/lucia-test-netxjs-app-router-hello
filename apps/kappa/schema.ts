@@ -38,6 +38,7 @@ export const user = sqliteTable('user', {
   id: text('id').primaryKey().notNull(),
   username: text('username').notNull(),
   githubUsername: text('github_username'),
+  discordUsername: text('discord_username'),
   avatarUrl: text('avatar_url'),
 });
 

@@ -24,17 +24,21 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1691683018612-10abe7863978')]">
+        <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1667560939717-a010f2484c91')]">
           <div className="font-mono text-3xl">
-            <span className="bg-white/50 text-black px-4">KAPPA</span>
+            <span className=" text-white px-4">KAPPA</span>
           </div>
           <div>
-            {!user && <Link href="/login">Sign in</Link>}
+            {!user && (
+              <Link href="/login" className="text-white">
+                Sign in
+              </Link>
+            )}
             {user && (
               <div className="flex flex-row gap-4">
                 <div className="flex flex-col gap-2 items-center text-black">
                   {user.avatarUrl && (
-                    <Image
+                    <img
                       className="rounded-xl border-white border-2"
                       src={user.avatarUrl}
                       alt="avatar"
@@ -42,7 +46,7 @@ export default async function RootLayout({
                       height={50}
                     />
                   )}
-                  <span className="bg-white/50 px-4">{user.username}</span>
+                  <span className="text-white px-4">{user.username}</span>
                 </div>
                 <Logout>🔋</Logout>
               </div>

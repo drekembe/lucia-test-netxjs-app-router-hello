@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import React, { useTransition } from 'react';
 
 export function DeleteButton(props: {
   id: number;

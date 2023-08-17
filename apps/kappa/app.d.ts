@@ -4,6 +4,7 @@ declare namespace Lucia {
   type DatabaseUserAttributes = {
     username: string;
     github_username?: string;
+    discord_username?: string;
     avatar_url?: string;
   };
   type DatabaseSessionAttributes = Record<string, never>;
