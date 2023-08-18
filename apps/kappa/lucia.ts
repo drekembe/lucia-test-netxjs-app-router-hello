@@ -29,13 +29,13 @@ export const auth = lucia({
 });
 
 export const githubAuth = github(auth, {
-  clientId: env.GITHUB_CLIENT_ID,
-  clientSecret: env.GITHUB_CLIENT_SECRET,
+  clientId: env.GITHUB_CLIENT_ID ?? '',
+  clientSecret: env.GITHUB_CLIENT_SECRET ?? '',
 });
 
 export const discordAuth = discord(auth, {
-  clientId: env.DISCORD_CLIENT_ID,
-  clientSecret: env.DISCORD_CLIENT_SECRET,
+  clientId: env.DISCORD_CLIENT_ID ?? '',
+  clientSecret: env.DISCORD_CLIENT_SECRET ?? '',
   redirectUri: 'http://localhost:4200/login/discord/callback',
 });
 
