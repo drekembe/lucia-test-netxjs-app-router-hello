@@ -3,8 +3,6 @@
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
-  "eslint.validate": [
-    "json"
-  ],
+  "eslint.validate": ["json"],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

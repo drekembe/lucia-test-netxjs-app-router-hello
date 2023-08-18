@@ -63,6 +63,12 @@
         "lintFilePatterns": ["apps/kappa/**/*.{ts,tsx,js,jsx}"]
       }
     },
+    "seed": {
+      "executor": "@qapp/ts-util:ts-run",
+      "dependsOn": ["migrate"],
+      "options": {
+        "script": "apps/kappa/seed.ts"      }
+    },
     "migrate": {
       "executor": "@qapp/drizzle-migrate:migrate",
       "dependsOn": ["generate-migrations"],

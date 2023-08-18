@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "ts-run": {
+      "implementation": "./src/executors/ts-run/executor",
+      "schema": "./src/executors/ts-run/schema.json",
+      "description": "ts-run executor"
+    }
+  }
+}

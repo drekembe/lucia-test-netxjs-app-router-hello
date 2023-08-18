@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "TsRun executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "script": {
+      "type": "string"
+    },
+    "cwd": {
+      "type": "string"
+    }
+  },
+  "required": ["script"]
+}
