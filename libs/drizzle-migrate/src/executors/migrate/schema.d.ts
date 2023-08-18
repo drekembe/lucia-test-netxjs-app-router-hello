@@ -1,5 +1,4 @@
 export interface MigrateExecutorSchema {
-  whammy?: string;
+  envFile: string;
   migrations: string;
-  db: string;
 } // eslint-disable-line

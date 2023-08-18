@@ -5,16 +5,13 @@
   "description": "",
   "type": "object",
   "properties": {
-    "whammy": {
+    "envFile": {
       "type": "string",
-      "description": "Whammyy"
+      "description": "envFile"
     },
     "migrations": {
       "type": "string"
-    },
-    "db": {
-      "type": "string"
     }
   },
-  "required": ["migrations", "db"]
+  "required": ["migrations", "envFile"]
 }

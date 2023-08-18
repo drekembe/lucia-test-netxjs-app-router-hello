@@ -73,8 +73,8 @@
       "executor": "@qapp/drizzle-migrate:migrate",
       "dependsOn": ["generate-migrations"],
       "options": {
-        "db": "apps/kappa/db.sqlite",
-        "migrations": "apps/kappa/drizzle"
+        "migrations": "apps/kappa/drizzle",
+        "envFile": "apps/kappa/.env"
       }
     },
     "generate-migrations": {
