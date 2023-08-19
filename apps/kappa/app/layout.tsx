@@ -1,9 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import './global.css';
 import { auth } from '../lucia';
 import { cookies } from 'next/headers';
-import { Logout } from '../components/logout';
 
 export const metadata = {
   title: 'KAPPA',
@@ -24,7 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1667560939717-a010f2484c91')]">
+        <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf')]">
           <div className="font-mono text-3xl">
             <span className=" text-white px-4">KAPPA</span>
           </div>
@@ -48,7 +46,9 @@ export default async function RootLayout({
                   )}
                   <span className="text-white px-4">{user.username}</span>
                 </div>
-                <Logout>🔋</Logout>
+                <div className="text-white">
+                  <a href="/api/logout">sign out</a>
+                </div>
               </div>
             )}
           </div>
