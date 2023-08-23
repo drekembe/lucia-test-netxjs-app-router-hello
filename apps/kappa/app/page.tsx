@@ -42,12 +42,12 @@ export default async function Index() {
       <div className="divide-y divide-gray-300 border border-gray-300 rounded-xl shadow-md overflow-clip">
         {result.map((entry) => (
           <div
-            className="text-gray-700 flex justify-between bg-white items-stretch"
+            className="text-gray-700 flex  bg-white items-stretch"
             key={entry.id}
           >
             <Link
               href={`people/${entry.id}`}
-              className="flex items-center w-32 p-4 hover:text-pink-500"
+              className="flex items-center p-4 hover:text-pink-500 flex-grow"
             >
               {entry.name}
             </Link>

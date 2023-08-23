@@ -79,6 +79,9 @@
     },
     "generate-migrations": {
       "executor": "nx:run-commands",
+      "outputs": [
+        "apps/kappa/drizzle/*"
+      ],
       "options": {
         "command": "npx drizzle-kit generate:sqlite",
         "cwd": "apps/kappa"
