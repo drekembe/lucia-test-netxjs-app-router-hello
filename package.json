@@ -2,7 +2,10 @@
   "name": "@qapp/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+     "start": "nx serve",
+     "seed": "nx seed"
+   },
   "private": true,
   "devDependencies": {
     "@nx/cypress": "16.5.5",

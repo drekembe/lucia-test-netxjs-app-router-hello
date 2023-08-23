@@ -1,6 +1,6 @@
 Playing around with next app router, drizzle and lucia
 
-- npm install
+- pnpm install (if you get errors do pnpm install -g node-gyp)
 - set up .env in apps/kappa/.env based on .env.template
-- npx nx run kappa:seed (this sets up the db and seeds it)
-- npx nx run kappa:serve
+- pnpm run seed kappa (this sets up the db and seeds it)
+- pnpm run start kappa
