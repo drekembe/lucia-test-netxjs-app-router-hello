@@ -5,8 +5,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0(better-sqlite3@8.5.0)(lucia@2.0.0)
   '@lucia-auth/oauth':
-    specifier: ^2.1.1
-    version: 2.1.1(lucia@2.0.0)
+    specifier: ^3.0.0
+    version: 3.0.0(lucia@2.0.0)
   '@nx/devkit':
     specifier: 16.5.5
     version: 16.5.5(nx@16.5.5)
@@ -2178,8 +2178,8 @@ packages:
       lucia: 2.0.0
     dev: false
 
-  /@lucia-auth/oauth@2.1.1(lucia@2.0.0):
-    resolution: {integrity: sha512-spgYssLCpUzfNuCJNKpZuOrU31SlpXMIvLpBGshotYfKETV3/ubiIUPGK6woPPN7Fhh0rNUgrTGvJ7cfM9DQ5w==}
+  /@lucia-auth/oauth@3.0.0(lucia@2.0.0):
+    resolution: {integrity: sha512-InjJ8ntwp3HB7tPCg7zfG3xxHgsMREq0ojT8IUuUS0UNdGFlk6ZJAymL+3P8o/U1fJgJA5kY1NxwNnYU+SuA3g==}
     peerDependencies:
       lucia: ^2.0.0
     dependencies:

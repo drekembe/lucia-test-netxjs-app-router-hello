@@ -20,8 +20,9 @@ export const GET = async (request: NextRequest) => {
     });
   }
   try {
-    const { existingUser, githubUser, createUser } =
+    const { getExistingUser, githubUser, createUser } =
       await githubAuth.validateCallback(code);
+    const existingUser = await getExistingUser();
 
     const getUser = async () => {
       if (existingUser) {

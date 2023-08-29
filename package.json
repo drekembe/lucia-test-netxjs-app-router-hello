@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-     "start": "nx serve",
-     "seed": "nx seed"
-   },
+    "start": "nx serve",
+    "seed": "nx seed"
+  },
   "private": true,
   "devDependencies": {
     "@nx/cypress": "16.5.5",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@lucia-auth/adapter-sqlite": "^2.0.0",
-    "@lucia-auth/oauth": "^2.1.1",
+    "@lucia-auth/oauth": "^3.0.0",
     "@nx/devkit": "16.5.5",
     "@nx/plugin": "16.5.5",
     "@swc/helpers": "~0.5.0",
