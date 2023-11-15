@@ -64,7 +64,7 @@
     "@types/better-sqlite3": "^7.6.4",
     "better-sqlite3": "^8.5.0",
     "dotenv": "^16.3.1",
-    "drizzle-orm": "^0.27.0",
+    "drizzle-orm": "^0.29.0",
     "lucia": "^2.0.0",
     "next": "^13.4.13",
     "react": "18.2.0",
