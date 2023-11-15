@@ -18,8 +18,9 @@ export const GET = async (request: NextRequest) => {
       status: 400,
     });
   try {
-    const { existingUser, discordUser, createUser } =
+    const { discordUser, createUser, getExistingUser } =
       await discordAuth.validateCallback(code);
+    const existingUser = await getExistingUser();
     const getUser = async () => {
       if (existingUser) {
         return existingUser;
