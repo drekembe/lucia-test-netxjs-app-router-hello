@@ -1,8 +1,9 @@
 import { db } from '../../../db';
-import { cities, people } from '../../../schema';
+import { cities, people, countries } from '../../../schema';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { requireUser } from '../../../util';
+import { eq } from 'drizzle-orm';
 
 const schema = z.object({
   name: z.string().nonempty(),
@@ -12,7 +13,11 @@ const schema = z.object({
 
 export default async function Page() {
   await requireUser();
-  const result = db.select().from(cities).all();
+  const result = db
+    .select()
+    .from(cities)
+    .innerJoin(countries, eq(cities.countryId, countries.id))
+    .all();
   async function addPerson(data: FormData) {
     'use server';
     const { name, age, cityId } = schema.parse(
@@ -40,9 +45,9 @@ export default async function Page() {
       <input type="number" name="age" placeholder="Enter age ..." id="age" />
       <label htmlFor="cities-select">Choose city:</label>
       <select name="cityId" id="cities-select">
-        {result.map((city) => (
-          <option value={city.id} key={city.id}>
-            {city.name}
+        {result.map((entry) => (
+          <option value={entry.cities.id} key={entry.cities.id}>
+            {entry.cities.name}, {entry.countries.name}
           </option>
         ))}
       </select>

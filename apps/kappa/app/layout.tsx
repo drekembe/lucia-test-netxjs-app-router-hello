@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body>
         <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf')]">
           <div className="font-mono text-3xl">
-            <span className=" text-white px-4">KAPPA</span>
+            <span className=" text-white px-4">WargoX</span>
           </div>
           <div>
             {!user && (
