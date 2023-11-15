@@ -7,13 +7,20 @@ const citiesCount = db
   .from(cities)
   .all()[0].count;
 if (citiesCount === 0) {
-  const b = db
+  const s = db
     .insert(countries)
     .values({
-      name: 'Boletaria Woot',
+      name: 'Slovenia',
     })
     .returning({ id: countries.id })
     .get();
-  db.insert(cities).values({ countryId: b.id, name: 'Pryzcwyczy' }).run();
-  db.insert(cities).values({ countryId: b.id, name: 'Prklo' }).run();
+  const u = db
+    .insert(countries)
+    .values({
+      name: 'Uruguay',
+    })
+    .returning({ id: countries.id })
+    .get();
+  db.insert(cities).values({ countryId: s.id, name: 'Ljubljana' }).run();
+  db.insert(cities).values({ countryId: u.id, name: 'Montevideo' }).run();
 }
