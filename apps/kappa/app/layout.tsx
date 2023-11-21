@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import './global.css';
-import { auth } from '../lucia';
-import { cookies } from 'next/headers';
+import { HeaderUser } from '../components/header-user';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'KAPPA',
@@ -13,44 +12,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const authRequest = auth.handleRequest({
-    request: null,
-    cookies,
-  });
-  const session = await authRequest.validate();
-  const user = session?.user;
   return (
     <html lang="en">
       <body>
         <nav className="h-32 p-8 flex justify-between items-center bg-cover bg-[url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf')]">
           <div className="font-mono text-3xl">
-            <span className=" text-white px-4">WargoX</span>
+            <span className=" text-white px-4">
+              <Link href="/">WargoX</Link>
+            </span>
           </div>
           <div>
-            {!user && (
-              <Link href="/login" className="text-white">
-                Sign in
-              </Link>
-            )}
-            {user && (
-              <div className="flex flex-row gap-4">
-                <div className="flex flex-col gap-2 items-center text-black">
-                  {user.avatarUrl && (
-                    <img
-                      className="rounded-xl border-white border-2"
-                      src={user.avatarUrl}
-                      alt="avatar"
-                      width={50}
-                      height={50}
-                    />
-                  )}
-                  <span className="text-white px-4">{user.username}</span>
-                </div>
-                <div className="text-white">
-                  <a href="/api/logout">sign out</a>
-                </div>
-              </div>
-            )}
+            <HeaderUser />
           </div>
         </nav>
         <main className="flex flex-col gap-8 pt-8 container mx-auto">

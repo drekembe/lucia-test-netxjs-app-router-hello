@@ -70,6 +70,9 @@ export default async function Index() {
           🐻 Add new
         </Link>
       )}
+      <div>
+        <Link href="/countries">Countries</Link>
+      </div>
     </div>
   );
 }

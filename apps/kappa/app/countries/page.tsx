@@ -2,9 +2,27 @@ import { requireUser } from '../../util';
 import { db } from '../../db';
 import { countries } from '../../schema';
 import { revalidatePath } from 'next/cache';
+import { deleteCountry } from '../actions';
+import Link from 'next/link';
+
+function Country({ country }: { country: typeof countries.$inferSelect }) {
+  async function del() {
+    'use server';
+    await deleteCountry(country.id);
+    revalidatePath('/countries');
+  }
+  return (
+    <li key={country.id}>
+      <Link href={`countries/${country.id}`}>{country.name}</Link>
+      --
+      <form>
+        <button formAction={del}>Del</button>
+      </form>
+    </li>
+  );
+}
 
 async function getCountries() {
-  await new Promise((r) => setTimeout(r, 2000));
   return db.select().from(countries).all();
 }
 export default async function Page() {
@@ -18,10 +36,22 @@ export default async function Page() {
   const allCountries = await getCountries();
   return (
     <div>
-      <pre>{JSON.stringify(allCountries, null, 2)}</pre>
+      <div>
+        <ul>
+          {allCountries.map((country) => (
+            <Country key={country.id} country={country} />
+          ))}
+        </ul>
+      </div>
       <form action={addCountry}>
         <label htmlFor="name">Country</label>
-        <input type="text" required id="name" name="name" />
+        <input
+          type="text"
+          required
+          id="name"
+          name="name"
+          autoComplete="country"
+        />
         <button type="submit">ok go</button>
       </form>
     </div>
