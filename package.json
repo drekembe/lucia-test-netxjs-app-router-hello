@@ -53,7 +53,7 @@
     "webpack": "^5.1"
   },
   "volta": {
-    "node": "18.16.1"
+    "node": "20.9.0"
   },
   "dependencies": {
     "@lucia-auth/adapter-sqlite": "^2.0.0",
