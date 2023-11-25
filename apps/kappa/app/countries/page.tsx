@@ -12,11 +12,23 @@ function Country({ country }: { country: typeof countries.$inferSelect }) {
     revalidatePath('/countries');
   }
   return (
-    <li key={country.id}>
-      <Link href={`countries/${country.id}`}>{country.name}</Link>
-      --
+    <li
+      key={country.id}
+      className="flex flex-row justify-between p-2 align-middle"
+    >
+      <Link
+        href={`countries/${country.id}`}
+        className="text-pink-500 hover:underline text-2xl"
+      >
+        {country.name}
+      </Link>
       <form>
-        <button formAction={del}>Del</button>
+        <button
+          formAction={del}
+          className="border border-pink-500 rounded p-2 uppercase text-pink-500 text-xs hover:bg-pink-200"
+        >
+          Del
+        </button>
       </form>
     </li>
   );
@@ -37,7 +49,7 @@ export default async function Page() {
   return (
     <div>
       <div>
-        <ul>
+        <ul className="divide-y">
           {allCountries.map((country) => (
             <Country key={country.id} country={country} />
           ))}
