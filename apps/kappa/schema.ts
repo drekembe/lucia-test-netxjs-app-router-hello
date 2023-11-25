@@ -4,7 +4,6 @@ import {
   integer,
   uniqueIndex,
 } from 'drizzle-orm/sqlite-core';
-import { InferModel } from 'drizzle-orm';
 
 export const countries = sqliteTable(
   'countries',
@@ -31,8 +30,8 @@ export const people = sqliteTable('people', {
   cityId: integer('city_id').references(() => cities.id),
 });
 
-export type Country = InferModel<typeof countries, 'select'>;
-export type NewCountry = InferModel<typeof countries, 'insert'>;
+export type Country = typeof countries.$inferInsert;
+export type NewCountry = typeof countries.$inferInsert;
 
 export const user = sqliteTable('user', {
   id: text('id').primaryKey().notNull(),
@@ -57,4 +56,39 @@ export const userSession = sqliteTable('user_session', {
     .references(() => user.id),
   activeExpires: integer('active_expires').notNull(),
   idleExpires: integer('idle_expires').notNull(),
+});
+
+export const queue = sqliteTable('queue', {
+  id: integer('id').primaryKey().notNull(),
+  name: text('name').notNull(),
+  ownerUserId: text('owner_user_id')
+    .notNull()
+    .references(() => user.id),
+  isActive: integer('is_paused').default(1).notNull(),
+  isDeleted: integer('is_deleted').default(0).notNull(),
+});
+
+export const station = sqliteTable('station', {
+  id: integer('id').primaryKey().notNull(),
+  name: text('name').notNull(),
+  queueId: integer('queue_id')
+    .notNull()
+    .references(() => queue.id),
+  currentUserId: text('current_user_id').references(() => user.id),
+  isActive: integer('is_paused').default(1).notNull(),
+});
+
+export const spot = sqliteTable('spot', {
+  id: text('id').primaryKey().notNull(),
+  number: integer('id').notNull(),
+  queueId: integer('queue_id')
+    .notNull()
+    .references(() => queue.id),
+  queuedAt: text('queued_at'),
+  processedAt: text('processed_at'),
+  abortedAt: text('aborted_at'),
+  processedByUserId: text('processed_by_user_id').references(() => user.id),
+  processedByStationId: integer('processed_by_station_id').references(
+    () => station.id
+  ),
 });

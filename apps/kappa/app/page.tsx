@@ -70,8 +70,9 @@ export default async function Index() {
           🐻 Add new
         </Link>
       )}
-      <div>
+      <div className="flex flex-col gap-8">
         <Link href="/countries">Countries</Link>
+        <Link href="/queues">Queues</Link>
       </div>
     </div>
   );
