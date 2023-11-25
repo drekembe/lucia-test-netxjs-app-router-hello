@@ -61,6 +61,7 @@ export const userSession = sqliteTable('user_session', {
 export const queue = sqliteTable('queue', {
   id: integer('id').primaryKey().notNull(),
   name: text('name').notNull(),
+  activeNumber: integer('id'),
   ownerUserId: text('owner_user_id')
     .notNull()
     .references(() => user.id),

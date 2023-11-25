@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "9f6f35b1-c30b-4edd-9779-5752bf04cfb9",
-  "prevId": "96ab6eea-78ed-42c7-9a79-e2fa6654d9a4",
+  "id": "965e1874-979e-4454-8700-ab68bbc6a21d",
+  "prevId": "9f6f35b1-c30b-4edd-9779-5752bf04cfb9",
   "tables": {
     "cities": {
       "name": "cities",
@@ -143,8 +143,8 @@
         "id": {
           "name": "id",
           "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         },
         "name": {
