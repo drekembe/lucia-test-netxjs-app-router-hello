@@ -10,7 +10,7 @@ export default async function runExecutor(options: TsRunExecutorSchema) {
     await promisify(chdir)(options.cwd);
   }
   const { stdout, stderr } = await promisify(exec)(
-    `npx ts-node --project ${tsconfig} ${options.script}`
+    `pnpm ts-node --project ${tsconfig} ${options.script}`
   );
   console.log({ stdout, stderr });
   return {
