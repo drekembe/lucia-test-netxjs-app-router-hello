@@ -46,18 +46,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/kappa/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/kappa/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/kappa/**/*.{ts,tsx,js,jsx}"]
@@ -67,7 +60,8 @@
       "executor": "@qapp/ts-util:ts-run",
       "dependsOn": ["migrate"],
       "options": {
-        "script": "apps/kappa/seed.ts"      }
+        "script": "apps/kappa/seed.ts"
+      }
     },
     "migrate": {
       "executor": "@qapp/drizzle-migrate:migrate",
@@ -79,9 +73,7 @@
     },
     "generate-migrations": {
       "executor": "nx:run-commands",
-      "outputs": [
-        "apps/kappa/drizzle/*"
-      ],
+      "outputs": ["{projectRoot}/drizzle/*"],
       "options": {
         "command": "npx drizzle-kit generate:sqlite",
         "cwd": "apps/kappa"
