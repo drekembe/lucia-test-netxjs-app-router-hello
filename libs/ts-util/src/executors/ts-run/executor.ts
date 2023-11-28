@@ -1,7 +1,7 @@
 import { TsRunExecutorSchema } from './schema';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { chdir } from 'node:process';
 
 export default async function runExecutor(options: TsRunExecutorSchema) {
